@@ -44,6 +44,7 @@
 		}, options);
 
 		options.id = 'exPortfolio';
+		options.placement = ( ( options.placement == 'after' || options.placement == 'before' || options.placement.search('#') !== -1 ) ? options.placement : 'before');
 
 		var ex = this;
 		
@@ -177,7 +178,7 @@
 
 		ex.colioId = Math.floor((Math.random() * 9999999999999) + 1);
 
-		ex.find('ul[class=list]').colio($.extend(options,{id : 'exPortfolio'+ex.colioId, placement : 'before'}));
+		ex.find('ul[class=list]').colio($.extend(options,{id : 'exPortfolio'+ex.colioId}));
 		
 		// "isotope" plugin
 		ex.isoTop = function(filterItem) {
