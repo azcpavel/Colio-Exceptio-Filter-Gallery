@@ -97,18 +97,20 @@
 
 
 
-			$.each(value.contents.side,function(indexSide, valueSide){
+			value.contents.side = $.extend({contents : ''},value.contents.side);
+
+			$.each(value.contents.side.imgs,function(indexSide, valueSide){
 				valueSide = $.extend({					
 					imageAlt : '',
 					imageClass : '',
 					attr : ''
 				},valueSide);				
-
+				
 				if(value.liType == 'box'){
 					if(valueSide.attr == '')
 						contentsFeed.append(
 							'<li>'+
-								'<a class="exFancybox" href="pictures/pic2.jpg">'+
+								'<a class="exFancybox" href="'+valueSide.image+'">'+
 									'<img class="'+valueSide.imageClass+'" src="'+valueSide.image+'" alt="'+valueSide.imageAlt+'">'+
 								'</a>'+
 							'</li>');				
@@ -136,14 +138,16 @@
 							value.contents.main.contents+
 						'</div>'+						
 						'<div class="side">'+
-							( (contentsFeed.children().length > 0) ? contentsFeed.clone().wrap('<div>').parent().html() : contentsSlide.parent().clone().wrap('<div>').parent().html())+							
+							( (contentsFeed.children().length > 0) ? contentsFeed.clone().wrap('<div>').parent().html() : contentsSlide.parent().clone().wrap('<div>').parent().html())+
+							'<div class="content">'+value.contents.side.contents+'</div>'+
 						'</div>'+						
 					'</div>';
 			else
 			exPortfolioDetails += ''+
 					'<div id="'+options.id+'_c'+randonID+'" class="colio-content">'+					
 						'<div class="side">'+
-							( (contentsFeed.children().length > 0) ? contentsFeed.clone().wrap('<div>').parent().html() : contentsSlide.parent().clone().wrap('<div>').parent().html())+							
+							( (contentsFeed.children().length > 0) ? contentsFeed.clone().wrap('<div>').parent().html() : contentsSlide.parent().clone().wrap('<div>').parent().html())+
+							'<div class="content">'+value.contents.side.contents+'</div>'+
 						'</div>'+
 						'<div class="main">'+
 							'<h3>'+value.contents.main.head+'</h3>'+
