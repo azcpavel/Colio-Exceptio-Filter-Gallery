@@ -117,7 +117,7 @@
 					else
 						contentsFeed.append(
 							'<li>'+
-								'<a '+valueSide.attr+'>'+
+								'<a '+valueSide.attr+' style="cursor:pointer;">'+
 									'<img class="'+valueSide.imageClass+'" src="'+valueSide.image+'" alt="'+valueSide.imageAlt+'">'+
 								'</a>'+
 							'</li>');
@@ -156,10 +156,26 @@
 					'</div>';
 
 
-		});		
+		});
 
-		exPortfolioCategory = $.unique(exPortfolioCategory).sort();
+		//Unique Array Function
 
+		ex.unique = function(array)
+		{
+			var n = {},r=[];
+			for(var i = 0; i < array.length; i++) 
+			{
+				if (!n[array[i]]) 
+				{
+					n[array[i]] = true; 
+					r.push(array[i]); 
+				}
+			}			
+			return r;
+		}		
+
+		exPortfolioCategory = ex.unique(exPortfolioCategory).sort();
+		
 		var exPortfolioFilter = $('<div class="filters"></div>');
 		exPortfolioFilter.append('<a href="#" class="filter-active">All</a>');
 
@@ -205,7 +221,3 @@
 		ex.isoTop(filter);		
 	};
 })(jQuery);
-	
-
-
-
